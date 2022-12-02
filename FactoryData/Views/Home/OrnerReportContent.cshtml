@@ -1,0 +1,34 @@
+﻿@using System.Data
+<title>@Model using System.Data.DataTable</title>
+<br />
+<h2>檢視記錄</h2>
+@foreach (DataRow row in Model.Rows)
+{
+    <h3>標題:@row["Title"]</h3>
+    <article>
+        <h3>類型:@row["Type"]</h3>
+        <h3>建立人:@row["RackPeople"]</h3>
+        <h3>建立時間:@Convert.ToDateTime(row["AddDatetime"]).ToString("yyyy/MM/dd")</h3>
+        @if (row["ImageName"].ToString() != "")
+        {
+            <h3><img src="~/Photos/@row["ImageName"]" width="1280" height="720"></h3>
+        }
+        <a href="/Home/OrnerReportFileDownload/@row["ID"]">@row["FileName"]</a>
+    </article>
+    <div class="area">
+        <textarea rows="6" cols="80" class="form-group" style="max-width:900px;max-height:300px;height:300px;width:900px">內容:@row["Content"]</textarea>
+    </div>
+    @*@foreach (FileInfo result in finfo)
+        {
+            <a href="../Photos/@result.Name" target="_blank">
+                <img src="../Photos/@result.Name"width="150" height="120" border="0"/>
+            </a>
+        }*@
+
+    <br />
+    <a href="/Home/OrnerReport/" class="btn btn-info">返回記錄</a>
+    <script src="~/Content/divcss.css"></script>
+}
+
+
+

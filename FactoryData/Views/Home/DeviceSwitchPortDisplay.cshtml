@@ -1,0 +1,66 @@
+﻿@using System.Data
+@using PagedList
+@using PagedList.Mvc
+<title>Model IEnumberable<Factory.Models.DeviceSwitchPortEdit></title>
+<h2>設備資料</h2>
+<div>
+    <a href="/Home/Insert" class="btn btn-default" style="background-color:orange">新增</a>
+    <a href="/Home/DeviceSwitchUpload" class="btn btn-default" style="background-color:turquoise">上傳</a>
+    <a href="/Home/DeviceExcelExport" class="btn btn-default" style="background-color:darksalmon">匯出資料</a>
+    <a href="/Home/ExampleDevic" class="btn btn-default" style="background-color:aquamarine">範本</a> 
+    <form action="/home/DeviceSwitchPortDisplay/" id="form1">
+        <p>
+            搜尋名稱: @Html.TextBox("searchDeviceSwitchPortName")
+            <input type="submit" value="搜尋">
+        </p>
+        <p>
+            選擇頁數: @Html.DropDownList("pageSize")
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("DeviceSwitchPortDisplay", new { page, pageSize = ViewBag.psize }))
+        </p>
+    </form>
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>廠區</td>
+            <td>Switch名稱</td>
+            <td>Switch IP</td>
+            <td>Switch MAC</td>
+            <td>Switch Port</td>
+            <td>裝置名稱</td>
+            <td>裝置型態</td>
+            <td>新增時間</td>
+            <td>修改時間</td>
+            <td>備註</td>
+            <td>EDIT</td>
+            <td>DEL</td>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Fab</td>
+                <td>@item.SwitchName</td>
+                <td>@item.SwitchIP</td>
+                <td>@item.SwitchMAC</td>
+                <td>@item.SwitchPort</td>
+                <td>@item.DeviceName</td>
+                <td>@item.DeviceType</td>
+                <td>@item.AddDatetime</td>
+                <td>@item.EditDatetime</td>
+                <td>@item.Remarks</td>
+                <td>
+                    @Html.ActionLink("編輯", "DeviceSwitchPortEdit", new { id = item.ID },
+                                                             new { @class = "btn btn-primary" })
+                </td>
+                <td>
+                    <a href="/home/Delete/@item.ID" class="btn btn-danger" onclick="return confirm('確定要刪除?')">刪除</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/pageSize.js"></script>

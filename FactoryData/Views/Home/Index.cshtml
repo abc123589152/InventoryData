@@ -1,0 +1,276 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@*<div class="carousel" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#car" data-slide-to="0" class="active"></li>
+        <li data-target="#car" data-slide-to="1"></li>
+        <li data-target="#car" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel">
+            <img src="~/Photos/MapleStory 2020_2_12 下午 10_44_47.png" />
+            <div class="carousel-caption" style="padding-bottom:100px;">
+                <h1>歡迎來到這裡</h1>
+            </div>
+        </div>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel">
+            <img src="~/Photos/M.png" />
+            <div class="carousel-caption" style="padding-bottom:100px;">
+                <h1>歡迎來到這裡1</h1>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#car" role="button" data-slide="prev">
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#car" role="button" data-slide="next">
+        <span class="sr-only">Previous</span>
+    </a>
+</div>*@
+<div class="container"style="background-color:bisque" >
+    <div class="col-md-1 text-center">
+        <a href="/Home/CCTV"><img src="~/Photos/icons8-bullet-camera-100.png"></a>
+        <h2>CCTV數量:@ViewData["CCTVId"]</h2>
+    </div>
+    <div class="col-md-1 text-center">
+        <a href="/Home/ReportDetial"><img src="~/Photos/icons8-business-report-100.png"></a>
+        <h2>回報數量:@ViewData["ReportId"]</h2>
+    </div>
+    <div class="col-md-1 text-center">
+        <a href="/Home/Door/"><img src="~/Photos/icons8-open-door-100.png"></a>
+        <h2>門禁數量:@ViewData["DOORId"]</h2>
+    </div>   
+</div>
+@*<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="navbar-link" data-toggle="tab" href="#F15A">F15A設備資訊</a>
+    </li>
+    <li class="nav-item">
+        <a class="navbar-link" data-toggle="tab" href="#F15B">F15B設備資訊</a>
+    </li>
+    <li class="nav-item">
+        <a class="navbar-link" data-toggle="tab" href="#AP05">AP05設備資訊</a>
+    </li>
+</ul>*@
+<div class="row">
+    <form action="/Home/Index" method="post">
+        <div class="form-group">
+            <h2>選擇查詢日期</h2>
+            <input type="date" class="control-label" name="FirstDate" />到<input type="date" class="control-label" name="LastDate" /><input type="submit" value="查詢" />
+        </div>
+        <div class="col-md-4">
+            <h2>F15A異動數量</h2>
+
+            <table class="table">
+                <tr>
+                    <th>CCTV</th>
+                    <th>讀卡機</th>
+                    <th>Alarm System</th>
+                    <th>柵欄機</th>
+                    <th>通關機</th>
+                    <th>製證機</th>
+                    <th>Switch</th>
+                    <th>AMC</th>
+                </tr>
+                <tr>
+                    <th>@ViewData["F15ADownCCTV"]</th>
+                    <th>@ViewData["F15ADownReader"]</th>
+                    <th>@ViewData["F15ADownAlarm"]</th>
+                    <th>@ViewData["F15ADownBarriergate"]</th>
+                    <th>@ViewData["F15ADownGate"]</th>
+                    <th>@ViewData["F15ADownMakeCard"]</th>
+                </tr>
+            </table>
+            <h2>設備總數量</h2>
+            <div class="col-md-12 text-center">
+                <table class="table">
+                    <tr>
+                        <th>CCTV</th>
+                        <th>讀卡機</th>
+                        <th>Alarm System</th>
+                        <th>柵欄機</th>
+                        <th>通關機</th>
+                        <th>製證機</th>
+                        <th>Switch</th>
+                        <th>AMC</th>
+                    </tr>
+                    <tr>
+                        <th>@ViewData["F15ACCTV"]</th>
+                        <th>@ViewData["F15AReader"]</th>
+                        <th>@ViewData["F15AAlarm"]</th>
+                        <th>@ViewData["F15ABarriergate"]</th>
+                        <th>@ViewData["F15AGate"]</th>
+                        <th>@ViewData["F15AMakeCard"]</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="F15B" class="col-md-4">
+            <h2>F15B異動數量</h2>       
+            <table class="table">
+                <tr>
+                    <th>CCTV</th>
+                    <th>讀卡機</th>
+                    <th>Alarm System</th>
+                    <th>柵欄機</th>
+                    <th>通關機</th>
+                    <th>製證機</th>
+                    <th>Switch</th>
+                    <th>iSTAR</th>
+                </tr>
+                <tr>
+                    <th>@ViewData["F15BDownCCTV"]</th>
+                    <th>@ViewData["F15BDownReader"]</th>
+                    <th>@ViewData["F15BDownAlarm"]</th>
+                    <th>@ViewData["F15BDownBarriergate"]</th>
+                    <th>@ViewData["F15BDownGate"]</th>
+                    <th>@ViewData["F15BDownMakeCard"]</th>
+                </tr>
+            </table>
+            <h2>設備總數量</h2>
+            <div class="col-md-12 text-center">
+                <table class="table">
+                    <tr>
+                        <th>CCTV</th>
+                        <th>讀卡機</th>
+                        <th>Alarm System</th>
+                        <th>柵欄機</th>
+                        <th>通關機</th>
+                        <th>製證機</th>
+                        <th>Switch</th>
+                        <th>iSTAR</th>
+                    </tr>
+                    <tr>
+                        <th>@ViewData["F15BCCTV"]</th>
+                        <th>@ViewData["F15BReader"]</th>
+                        <th>@ViewData["F15BAlarm"]</th>
+                        <th>@ViewData["F15BBarriergate"]</th>
+                        <th>@ViewData["F15BGate"]</th>
+                        <th>@ViewData["F15BMakeCard"]</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="AP05" class="col-md-4">
+            <h2>AP05異動數量</h2>          
+            <table class="table">
+                <tr>
+                    <th>CCTV</th>
+                    <th>讀卡機</th>
+                    <th>Alarm System</th>
+                    <th>柵欄機</th>
+                    <th>通關機</th>
+                    <th>製證機</th>
+                    <th>Switch</th>
+                    <th>iSTAR</th>
+                </tr>
+                <tr>
+                    <th>@ViewData["AP05DownCCTV"]</th>
+                    <th>@ViewData["AP05DownReader"]</th>
+                    <th>@ViewData["AP05DownAlarm"]</th>
+                    <th>@ViewData["AP05DownBarriergate"]</th>
+                    <th>@ViewData["AP05DownGate"]</th>
+                    <th>@ViewData["AP05DownMakeCard"]</th>
+                </tr>
+            </table>
+            <h2>設備總數量</h2>
+            <div class="col-md-12 text-center">
+                <table class="table">
+                    <tr>
+                        <th>CCTV</th>
+                        <th>讀卡機</th>
+                        <th>Alarm System</th>
+                        <th>柵欄機</th>
+                        <th>通關機</th>
+                        <th>製證機</th>
+                        <th>Switch</th>
+                        <th>iSTAR</th>
+                    </tr>
+                    <tr>
+                        <th>@ViewData["AP05CCTV"]</th>
+                        <th>@ViewData["AP05Reader"]</th>
+                        <th>@ViewData["AP05Alarm"]</th>
+                        <th>@ViewData["AP05Barriergate"]</th>
+                        <th>@ViewData["AP05Gate"]</th>
+                        <th>@ViewData["AP05MakeCard"]</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>F15A Whatups</h2>
+        <p><a class="btn btn-default" href="http://10.70.192.62:8080">台積電公網位址 &raquo;</a></p>
+        <p><a class="btn btn-default" href="http://10.70.79.207:8080">私網位址 &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>F15B Whatups</h2>
+        <p><a class="btn btn-default" href="http://10.76.77.52:8080">台積電公網位址 &raquo;</a></p>
+        <p><a class="btn btn-default" href="http://10.248.67.100:8080">私網位址 &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>
+@*<div class="row">
+    <div class="col-md-4">
+        <h2>F15A設備總數量</h2>
+        <div class="form-group">
+            日期:<input type="date" class="control-label" />到<input type="date" class="control-label" /><input type="submit" value="查詢" />
+        </div>
+        <table class="table">
+            <tr>
+                <th>CCTV</th>
+                <th>讀卡機</th>
+                <th>通關機</th>
+                <th>Alarm System</th>
+                <th>Switch</th>
+                <th>柵欄機</th>
+                <th>製證機</th>
+                <th>AMC</th>
+            </tr>
+        </table>
+    </div>       
+    <div class="col-md-4">
+        <h2>F15B設備總數量</h2>
+        <div class="form-group">
+            日期:<input type="date" class="control-label" />到<input type="date" class="control-label" /><input type="submit" value="查詢" />
+        </div>
+        <table class="table">
+            <tr>
+                <th>CCTV</th>
+                <th>讀卡機</th>
+                <th>通關機</th>
+                <th>Alarm System</th>
+                <th>Switch</th>
+                <th>柵欄機</th>
+                <th>製證機</th>
+                <th>iSTAR</th>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h2>AP05設備總數量</h2>
+        <div class="form-group">
+            日期:<input type="date" class="control-label" />到<input type="date" class="control-label" /><input type="submit" value="查詢" />
+        </div>
+        <table class="table">
+            <tr>
+                <th>CCTV</th>
+                <th>讀卡機</th>
+                <th>通關機</th>
+                <th>Alarm System</th>
+                <th>Switch</th>
+                <th>柵欄機</th>
+                <th>製證機</th>
+                <th>iSTAR</th>
+            </tr>
+        </table>
+    </div>*@

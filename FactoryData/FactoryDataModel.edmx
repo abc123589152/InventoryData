@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FactoryDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'FactoryData.dbo.Account' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserPassWord" Type="nvarchar(max)" />
+          <Property Name="Permit" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddDatetime" Type="date" />
+          <Property Name="EditDatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="empolyeesName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="35" />
+          <Property Name="AddDatetime" Type="date" />
+          <Property Name="EditDatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DeviceSwitchPort">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SwitchName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SwitchIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="SwitchMAC" Type="nvarchar" MaxLength="100" />
+          <Property Name="SwitchPort" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeviceIPName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DeviceName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DeviceType" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddDatetime" Type="date" />
+          <Property Name="EditDatetime" Type="datetime" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="NEWCCTVDATA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fab" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCTVNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="CCTVName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CCTVIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCTVMAC" Type="nvarchar" MaxLength="100" />
+          <Property Name="CCTVBrand" Type="nvarchar" MaxLength="100" />
+          <Property Name="CCTVModel" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCTVType" Type="nvarchar" MaxLength="20" />
+          <Property Name="CCTVSwitchIp" Type="nvarchar" MaxLength="50" />
+          <Property Name="CCTVSwitchPort" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddVendor" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddDatetime" Type="date" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="200" />
+          <Property Name="EditDatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NEWDOORDATA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fab" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoorNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="DoorName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DoorIstarControlName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoorConnectType" Type="nvarchar" MaxLength="100" />
+          <Property Name="DoorReaderType" Type="nvarchar" MaxLength="100" />
+          <Property Name="DoorAcmNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoorReaderPort" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddVendor" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddDatetime" Type="date" />
+          <Property Name="EditDatetime" Type="datetime" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'FactoryData.dbo.Report' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="RackPeople" Type="nvarchar" MaxLength="20" />
+          <Property Name="RackVendor" Type="nvarchar" MaxLength="30" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="255" />
+          <Property Name="FileName" Type="nvarchar(max)" />
+          <Property Name="AddDatetime" Type="date" />
+          <Property Name="EditDatetime" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="FactoryDataModelStoreContainer">
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeviceSwitchPort" EntityType="Self.DeviceSwitchPort" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NEWCCTVDATA" EntityType="Self.NEWCCTVDATA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NEWDOORDATA" EntityType="Self.NEWDOORDATA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Account" EntityType="Self.Account" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Account].[ID] AS [ID], 
+    [Account].[UserName] AS [UserName], 
+    [Account].[UserPassWord] AS [UserPassWord], 
+    [Account].[Permit] AS [Permit], 
+    [Account].[Remarks] AS [Remarks], 
+    [Account].[AddDatetime] AS [AddDatetime], 
+    [Account].[EditDatetime] AS [EditDatetime]
+    FROM [dbo].[Account] AS [Account]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Report" EntityType="Self.Report" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Report].[ID] AS [ID], 
+    [Report].[Title] AS [Title], 
+    [Report].[Type] AS [Type], 
+    [Report].[Content] AS [Content], 
+    [Report].[RackPeople] AS [RackPeople], 
+    [Report].[RackVendor] AS [RackVendor], 
+    [Report].[ImageName] AS [ImageName], 
+    [Report].[FileName] AS [FileName], 
+    [Report].[AddDatetime] AS [AddDatetime], 
+    [Report].[EditDatetime] AS [EditDatetime]
+    FROM [dbo].[Report] AS [Report]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FactoryDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="empolyeesName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CardNumber" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="AddDatetime" Type="DateTime" Precision="0" />
+          <Property Name="EditDatetime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DeviceSwitchPort">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SwitchName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SwitchIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SwitchMAC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SwitchPort" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceIPName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddDatetime" Type="DateTime" Precision="0" />
+          <Property Name="EditDatetime" Type="DateTime" Precision="3" />
+          <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NEWCCTVDATA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CCTVNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CCTVName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CCTVIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCTVMAC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CCTVBrand" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CCTVModel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCTVType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CCTVSwitchIp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CCTVSwitchPort" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddVendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddDatetime" Type="DateTime" Precision="0" />
+          <Property Name="EditDatetime" Type="DateTime" Precision="3" />
+          <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Fab" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NEWDOORDATA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoorNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DoorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DoorIstarControlName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoorConnectType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DoorReaderType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DoorAcmNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoorReaderPort" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddVendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddDatetime" Type="DateTime" Precision="0" />
+          <Property Name="EditDatetime" Type="DateTime" Precision="3" />
+          <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Fab" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RackPeople" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RackVendor" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ImageName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AddDatetime" Type="DateTime" Precision="0" />
+          <Property Name="EditDatetime" Type="DateTime" Precision="3" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="FactoryDataEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="DeviceSwitchPort" EntityType="Self.DeviceSwitchPort" />
+          <EntitySet Name="NEWCCTVDATA" EntityType="Self.NEWCCTVDATA" />
+          <EntitySet Name="NEWDOORDATA" EntityType="Self.NEWDOORDATA" />
+          <EntitySet Name="Report" EntityType="Self.Report" />
+          <EntitySet Name="Account" EntityType="FactoryDataModel.Account" />
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassWord" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddDatetime" Type="DateTime" Precision="0" />
+          <Property Name="EditDatetime" Type="DateTime" Precision="3" />
+          <Property Name="Permit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FactoryDataModelStoreContainer" CdmEntityContainer="FactoryDataEntities2">
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="FactoryDataModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="empolyeesName" ColumnName="empolyeesName" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="AddDatetime" ColumnName="AddDatetime" />
+                <ScalarProperty Name="EditDatetime" ColumnName="EditDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeviceSwitchPort">
+            <EntityTypeMapping TypeName="FactoryDataModel.DeviceSwitchPort">
+              <MappingFragment StoreEntitySet="DeviceSwitchPort">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SwitchName" ColumnName="SwitchName" />
+                <ScalarProperty Name="SwitchIP" ColumnName="SwitchIP" />
+                <ScalarProperty Name="SwitchMAC" ColumnName="SwitchMAC" />
+                <ScalarProperty Name="SwitchPort" ColumnName="SwitchPort" />
+                <ScalarProperty Name="DeviceIPName" ColumnName="DeviceIPName" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+                <ScalarProperty Name="AddDatetime" ColumnName="AddDatetime" />
+                <ScalarProperty Name="EditDatetime" ColumnName="EditDatetime" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NEWCCTVDATA">
+            <EntityTypeMapping TypeName="FactoryDataModel.NEWCCTVDATA">
+              <MappingFragment StoreEntitySet="NEWCCTVDATA">
+                <ScalarProperty Name="Fab" ColumnName="Fab" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CCTVNumber" ColumnName="CCTVNumber" />
+                <ScalarProperty Name="CCTVName" ColumnName="CCTVName" />
+                <ScalarProperty Name="CCTVIP" ColumnName="CCTVIP" />
+                <ScalarProperty Name="CCTVMAC" ColumnName="CCTVMAC" />
+                <ScalarProperty Name="CCTVBrand" ColumnName="CCTVBrand" />
+                <ScalarProperty Name="CCTVModel" ColumnName="CCTVModel" />
+                <ScalarProperty Name="CCTVType" ColumnName="CCTVType" />
+                <ScalarProperty Name="CCTVSwitchIp" ColumnName="CCTVSwitchIp" />
+                <ScalarProperty Name="CCTVSwitchPort" ColumnName="CCTVSwitchPort" />
+                <ScalarProperty Name="AddVendor" ColumnName="AddVendor" />
+                <ScalarProperty Name="AddDatetime" ColumnName="AddDatetime" />
+                <ScalarProperty Name="EditDatetime" ColumnName="EditDatetime" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NEWDOORDATA">
+            <EntityTypeMapping TypeName="FactoryDataModel.NEWDOORDATA">
+              <MappingFragment StoreEntitySet="NEWDOORDATA">
+                <ScalarProperty Name="Fab" ColumnName="Fab" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DoorNumber" ColumnName="DoorNumber" />
+                <ScalarProperty Name="DoorName" ColumnName="DoorName" />
+                <ScalarProperty Name="DoorIstarControlName" ColumnName="DoorIstarControlName" />
+                <ScalarProperty Name="DoorConnectType" ColumnName="DoorConnectType" />
+                <ScalarProperty Name="DoorReaderType" ColumnName="DoorReaderType" />
+                <ScalarProperty Name="DoorAcmNumber" ColumnName="DoorAcmNumber" />
+                <ScalarProperty Name="DoorReaderPort" ColumnName="DoorReaderPort" />
+                <ScalarProperty Name="AddVendor" ColumnName="AddVendor" />
+                <ScalarProperty Name="AddDatetime" ColumnName="AddDatetime" />
+                <ScalarProperty Name="EditDatetime" ColumnName="EditDatetime" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Report">
+            <EntityTypeMapping TypeName="FactoryDataModel.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="RackPeople" ColumnName="RackPeople" />
+                <ScalarProperty Name="RackVendor" ColumnName="RackVendor" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="AddDatetime" ColumnName="AddDatetime" />
+                <ScalarProperty Name="EditDatetime" ColumnName="EditDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="FactoryDataModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Permit" ColumnName="Permit" />
+                <ScalarProperty Name="EditDatetime" ColumnName="EditDatetime" />
+                <ScalarProperty Name="AddDatetime" ColumnName="AddDatetime" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="UserPassWord" ColumnName="UserPassWord" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

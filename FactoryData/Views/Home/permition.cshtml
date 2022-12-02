@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "ReportDetial";
+}
+@using PagedList
+@using PagedList.Mvc
+@*@Model IPagedList<FactoryData.Models.Report>*@
+<title>@Model IEnumerable<FactoryData.Models.Report></title>
+<h2>權限設定</h2>
+@using System.Data
+@*<title>@Model using system.Data.DataTable</title>*@
+<div>
+    @*@Html.ActionLink("新增", "Report")*@
+    <a href="/Home/InsertPermition/" id="permition" class="btn btn-default" style="background-color:orange" data-toggle="modal" data-target=".ReportModal">新增</a>
+    <div class="modal fade ReportModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+    <form action="/home/permition/" method="post" id="form1">
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/pageSize.js"></script>
+        <p>
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("permition", new { page, pageSize = ViewBag.psize }))
+            選擇筆數: @Html.DropDownList("pageSize")
+            @*@Html.PagedListPager((IPagedList)Model, page => Url.Action("ReportDetial", new { page }))*@
+        </p>
+    </form>
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>群組</td>
+            <td>F15B廠區設備裝置SWITCH阜位</td>
+            <td>新增廠區</td>
+            <td>CCTV新增資訊</td>
+            <td>門禁新增資訊</td>
+            <td>回報</td>
+            <td>業主回報</td>
+            <td>新增帳號</td>
+            <td>SMSCCTV</td>
+            <td>SMS-讀卡機</td>
+            <td>SMS-AlarmSystem</td>
+            <td>SMS-柵欄機</td>
+            <td>SMS-通關機</td>
+            <td>SMS-製證機</td>
+            <td>權限設定</td>
+            <td>新增人</td>
+            <td>新增時間</td>
+            <td>修改時間</td>
+            <td>EDIT</td>
+            @if (Session["UserName"].ToString() == "F2791560")
+            {
+                <td>DEL</td>
+            }
+        </tr>
+        @*@foreach (DataRow row in Model.Rows)
+            {
+                <tr>
+                    <td>@row["ID"]</td>
+                    <td>@row["Title"]</td>
+                    <td>@row["Type"]</td>
+                    <td>@row["RackPeople"]</td>
+                    <td>@row["RackVendor"]</td>
+                    <td>@Convert.ToDateTime(row["AddDatetime"]).ToString("yyyy/MM/dd")</td>
+                    <td>@row["EditDatetime"]</td>
+                    <td>
+                        @Html.ActionLink("細節", "ReportContent", new { id = row["ID"] },
+                                                     new { @class = "btn btn-default" })
+                        @Html.ActionLink("編輯", "ReportEdit", new { id = row["ID"] },
+                                                     new { @class = "btn btn-primary" })
+                        @Html.ActionLink("刪除", "ReportDelete", new { id = row["ID"] },
+                                                     new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }*@
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>@item.ID</td>
+        <td>@item.GroupName</td>
+        <td>@item.Device</td>
+        <td>@item.Fab</td>
+        <td>@item.CCTV</td>
+        <td>@item.DOOR</td>
+        <td>@item.Report</td>
+        <td>@item.OrnerReport</td>
+        <td>@item.Account</td>
+        <td>@item.Permit</td>
+        <td>@item.SMSCCTV</td>
+        <td>@item.SMSReader</td>
+        <td>@item.SMSAlarmSystem</td>
+        <td>@item.SMSBarriergate</td>
+        <td>@item.SMSGate</td>
+        <td>@item.SMSMakeCard</td>
+        <td>@item.RackPeople</td>
+        <td>@Convert.ToDateTime(item.AddDatetime).ToString("yyyy-MM-dd")</td>
+        <td>@item.EditDatetime</td>
+        @*<td>
+            @Html.ActionLink("細節", "ReportContent", new { id = item.ID },
+                                                     new { @class = "btn btn-default" })
+        </td>*@
+        <td>
+            <a href="/Home/PermitionEdit/@item.ID" class="btn btn-primary">編輯</a>
+        </td>
+        @if (Session["UserName"].ToString() == "F2791560")
+        {
+            <td>
+                <a href="/home/PermitionDelete/@item.ID" class="btn btn-danger" onclick="return confirm('確定要刪除?')">刪除</a>
+            </td>
+        }
+    </tr>
+        }
+    </table>
+</div>
+
+<script src="~/Scripts/Model.js"></script>
+

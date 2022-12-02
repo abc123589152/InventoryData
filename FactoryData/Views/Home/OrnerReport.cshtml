@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "OrnerInsertReport";
+}
+@using PagedList
+@using PagedList.Mvc
+@*@Model IPagedList<FactoryData.Models.Report>*@
+<title>@Model IEnumerable<FactoryData.Models.OrnerReport></title>
+<h2>業主回報</h2>
+@using System.Data
+@*<title>@Model using system.Data.DataTable</title>*@
+<div>
+    @*<a href="/Home/OrnerInsertReport" class="btn btn-default" style="background-color:orange">新增</a>*@
+    <a href="/Home/OrnerInsertReport/" id="OrnerInsertReport" class="btn btn-default" style="background-color:orange" data-toggle="modal" data-target=".ReportModal">新增</a>
+    <div class="modal fade ReportModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            </div>
+        </div>
+
+    </div>
+    <form action="/home/OrnerReport/" method="post" id="form1">
+        搜尋標題: @Html.TextBox("SearchReport")
+        <input type="submit" value="搜尋">
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/pageSize.js"></script>
+        <p>
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("OrnerReport", new { page, pageSize = ViewBag.psize }))
+            選擇筆數: @Html.DropDownList("pageSize")
+            @*@Html.PagedListPager((IPagedList)Model, page => Url.Action("ReportDetial", new { page }))*@
+        </p>
+    </form>
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>標題</td>
+            <td>類型</td>
+            <td>記錄人</td>
+            <td>新增時間</td>
+            <td>修改時間</td>
+            <td>DETIAL</td>
+            <td>EDIT</td>
+            @if (Session["UserName"].ToString() == "F2791560")
+            {
+                <td>DEL</td>
+            }
+        </tr>
+        @*@foreach (DataRow row in Model.Rows)
+            {
+                <tr>
+                    <td>@row["ID"]</td>
+                    <td>@row["Title"]</td>
+                    <td>@row["Type"]</td>
+                    <td>@row["RackPeople"]</td>
+                    <td>@row["RackVendor"]</td>
+                    <td>@Convert.ToDateTime(row["AddDatetime"]).ToString("yyyy/MM/dd")</td>
+                    <td>@row["EditDatetime"]</td>
+                    <td>
+                        @Html.ActionLink("細節", "ReportContent", new { id = row["ID"] },
+                                                     new { @class = "btn btn-default" })
+                        @Html.ActionLink("編輯", "ReportEdit", new { id = row["ID"] },
+                                                     new { @class = "btn btn-primary" })
+                        @Html.ActionLink("刪除", "ReportDelete", new { id = row["ID"] },
+                                                     new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }*@
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>@item.ID</td>
+        <td>@item.Title</td>
+        <td>@item.Type</td>
+        <td>@item.RackPeople</td>
+        <td>@Convert.ToDateTime(item.AddDatetime).ToString("yyyy/MM/dd")</td>
+        <td>@item.EditDatetime</td>
+        <td>
+            @Html.ActionLink("細節", "OrnerReportContent", new { id = item.ID },
+                                                     new { @class = "btn btn-default" })
+        </td>
+        <td>
+            @Html.ActionLink("編輯", "OrnerReportEdit", new { id = item.ID },
+                                         new { @class = "btn btn-primary" })
+        </td>
+        @if (Session["UserName"].ToString() == "F2791560" || Session["UserName"].ToString() == "jychenzl" || Session["UserName"].ToString() == "J8519350")
+        {
+            <td>
+                <a href="/home/OrnerReportDelete/@item.ID" class="btn btn-danger" onclick="return confirm('確定要刪除?')">刪除</a>
+            </td>
+        }
+    </tr>
+        }
+    </table>
+</div>
+
+
+
+

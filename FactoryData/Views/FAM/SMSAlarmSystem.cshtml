@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "SMSAlarmSystem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using System.Data;
+@using PagedList
+@using PagedList.Mvc
+<title>@Model IEnumerable<FactoryData.Models.SMSCCTVModel></title>
+<h2>SMSAlarmSystem</h2>
+<div>
+    <a href="/FAM/InsertSMSAlarmSystem" class="btn btn-default" style="background-color:orange">新增</a>
+    <a href="/FAM/SMSAlarmSystemUpload" class="btn btn-default" style="background-color:turquoise">上傳</a>
+    <a href="/FAM/SMSAlarmSystemExcelExport" class="btn btn-default" style="background-color:darksalmon">匯出資料</a>
+    <a href="/FAM/ExampleSMSAlarmSystem" class="btn btn-default" style="background-color:aquamarine">範本</a>
+    <form action="/FAM/SMSAlarmSystem" id="form1">
+        <p>
+            搜尋資產編號: @Html.TextBox("SearchAlarmNumber")
+            <input type="submit" value="搜尋">
+        </p>
+        <p>
+            選擇筆數: @Html.DropDownList("pageSize")
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("SMSAlarmSystem", new { page, pageSize = ViewBag.psize }))
+        </p>
+    </form>
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>異動類別*</td>
+            <td>系統*</td>
+            <td>子系統*</td>
+            <td>資產編號*</td>
+            <td>資產描述*</td>
+            <td>廠區*</td>
+            <td>Phase*</td>
+            <td>棟別*</td>
+            <td>樓層*</td>
+            <td>課別*</td>
+            <td>設備分類*</td>
+            <td>廠牌</td>
+            <td>型號</td>
+            <td>資產分類</td>
+            <td>新增廠商</td>
+            <td align="center">備註</td>
+            <td>新增時間</td>
+            <td>機器狀態</td>
+            <td>下線日期</td>
+            <td>修改時間</td>
+            <td>EDIT</td>
+            @if (Session["UserName"].ToString() == "F2791560")
+            {
+                <td>DEL</td>
+            }
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.RemoveClass</td>
+                <td>@item.System</td>
+                <td>@item.SonSystem</td>
+                <td>@item.ProductNumber</td>
+                <td>@item.ProductDescription</td>
+                <td>@item.Factory</td>
+                <td>@item.Phase</td>
+                <td>@item.Buliding</td>
+                <td>@item.Floor</td>
+                <td>@item.ClassNO</td>
+                <td>@item.DeviceClass</td>
+                <td>@item.Brand</td>
+                <td>@item.Type</td>
+                <td>@item.ProductClassful</td>
+                <td>@item.RackPeople</td>
+                <td width="100">@item.Remarks</td>
+                <td>@Convert.ToDateTime(item.AddDatetime).ToString("yyyy-MM-dd")</td>
+                @if (item.Machinestate == "UP")
+                {
+                    <td class="btn btn-default" style="background-color:green;color:azure">@item.Machinestate</td>
+                }
+                else
+                {
+                    <td class="btn btn-default" style="background-color:red;color:azure">@item.Machinestate</td>
+                }
+
+                <td>@item.DownDate</td>
+                <td>@item.EditDatetime</td>
+                <td>
+                    @Html.ActionLink("編輯", "SMSAlarmSystemEdit", new { id = item.ID },
+                                              new { @class = "btn btn-primary" })
+                </td>
+                @if (Session["UserName"].ToString() == "F2791560")
+                {
+                    <td>
+                        <a href="/home/SMSAlarmSystemDelete/@item.ID" class="btn btn-danger" onclick="return confirm('確定要刪除?')">刪除</a>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/pageSize.js"></script>
+
+
+
+
+
+

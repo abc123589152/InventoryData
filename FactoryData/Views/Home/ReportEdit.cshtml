@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "ReportEdit";
+}
+@using FactoryData.Controllers 
+@{ 
+    HomeController ho = new HomeController();
+    DataTable dt = ho.da("Select *from Company");
+
+}
+@using System.Data;
+<title>@Model using system.Data.DataTable</title>
+<br/>
+<h2>修改</h2>
+@foreach (DataRow row in Model.Rows)
+{
+    <form method="post" action="@Url.Action("ReportEdit")">
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">標題</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="Title" name="Title" class="form-control" value="@row["Title"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">記錄廠商</span></font>
+                <div class="col-lg-10">
+                    <input type="text" name="RackPeople" id="RackPeople" class="form-control" value="@row["RackPeople"]" readonly />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">類型</span></font>
+                <div class="col-lg-10">
+                    <select name="Type" id="Type" class="form-control">
+                        <option value="@row["Type"]">@row["Type"]</option>
+                        <option value="柵欄機">柵欄機</option>
+                        <option value="電視牆">電視牆</option>
+                        <option value="CCTV">CCTV</option>
+                        <option value="Door">門禁</option>
+                        <option value="Other">其他</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">時間</span></font>
+                <div class="col-lg-10">
+                    <input type="date" name="AddDatetime" id="AddDatetime" class="form-control" value="@Convert.ToDateTime(row["AddDatetime"]).ToString("yyyy-MM-dd")" required />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">記錄</span></font>
+                <div class="col-lg-10">
+                    <textarea class="form-control" name="Content" rows="2" cols="80" id="Content" style="max-width:900px;max-height:200px;width:900px;height:400px;font-size:25px; margin: 0px;">@row["Content"]</textarea>
+                    <br />
+
+                    @if (Session["Remarks"].ToString() == @row["RackPeople"].ToString() || Session["UserName"].ToString() == "F2791560")
+                    {
+                        <input type="submit" value="修改" class="btn btn-primary" />
+
+                    }
+                    <a href="/Home/ReportDetial" class="btn btn-info">返回記錄</a>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+
+

@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "AccountDetail";
+}
+<br />
+<h2>帳戶細節</h2>
+@using PagedList
+@using PagedList.Mvc
+@*@Model IPagedList<FactoryData.Models.Report>*@
+@using System.Data
+@*<title>@Model using system.Data.DataTable</title>*@
+<div>
+    <a href="/Home/InserAccount" class="btn btn-default" style="background-color:orange">新增</a>
+    <form action="/Home/AccountDetail" id="form1">
+
+        <p>
+            搜尋標題: @Html.TextBox("SearchName")
+            <input type="submit" value="搜尋">
+        </p>
+        <p>
+            選擇筆數: @Html.DropDownList("pageSize")
+            <input type="submit" value="選擇頁數">
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("AccountDetail", new { page, pageSize = ViewBag.psize }))
+            @*@Html.PagedListPager((IPagedList)Model, page => Url.Action("ReportDetial", new { page }))*@
+        </p>
+    </form>
+
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>帳號</td>
+            <td>權限</td>
+            <td>備註</td>
+            <td>新增時間</td>
+            <td>修改時間</td>
+            <td>EDIT</td>
+            <td>DEL</td>
+        </tr>
+        @*@foreach (DataRow row in Model.Rows)
+            {
+                <tr>
+                    <td>@row["ID"]</td>
+                    <td>@row["Title"]</td>
+                    <td>@row["Type"]</td>
+                    <td>@row["RackPeople"]</td>
+                    <td>@row["RackVendor"]</td>
+                    <td>@Convert.ToDateTime(row["AddDatetime"]).ToString("yyyy/MM/dd")</td>
+                    <td>@row["EditDatetime"]</td>
+                    <td>
+                        @Html.ActionLink("細節", "ReportContent", new { id = row["ID"] },
+                                                     new { @class = "btn btn-default" })
+                        @Html.ActionLink("編輯", "ReportEdit", new { id = row["ID"] },
+                                                     new { @class = "btn btn-primary" })
+                        @Html.ActionLink("刪除", "ReportDelete", new { id = row["ID"] },
+                                                     new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }*@
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.UserName</td>
+                <td>@item.Permit</td>
+                <td>@item.Remarks</td>
+
+                <td>@item.AddDatetime</td>
+
+                <td>@item.EditDatetime</td>
+                <td>
+                    @Html.ActionLink("編輯", "AccountEdit", new { id = item.ID },
+                                                 new { @class = "btn btn-primary" })
+                </td>
+                @if (Session["UserName"].ToString() == "F2791560")
+                {
+                    <td>
+                        <a href="/home/AccountDelete/@item.ID" class="btn btn-danger" onclick="return confirm('確定要刪除?')">刪除</a>
+                    </td>
+                }
+                @*<td>
+                        <form method="post" action="@Url.Action("ReportDelete/"+item.ID)">
+                        <input type="submit" value="刪除" onclick="confirmMs()"/>
+                        </form>
+                    </td>*@
+            </tr>
+        }
+    </table>
+</div>
+<script src="~/Scripts/pageSize.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+@*<script type="text/javascript">
+        function confirmMs() {
+            var Select = confirm("確定要刪除嗎");
+            if (Select == "yes") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>*@
+
+
+

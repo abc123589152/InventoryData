@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "InsertSMSReader";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>InsertSMSReader</h2>
+@using System.Data;
+<title>@Model using System.Data.DataTable</title>
+<form method="post" action="@Url.Action("InsertSMSReader")">
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">異動類別*</span></font>
+            <div class="col-md-10">
+                <input type="text" id="RemoveClass" name="RemoveClass" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">系統*</span></font>
+            <div class="col-md-10">
+                <input type="text" id="System" name="System" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">子系統*</span></font>
+            <div class="col-md-10">
+                <input type="text" id="SonSystem" name="SonSystem" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">資產編號*</span></font>
+            <div class="col-md-10">
+                <input type="text" id="ProductNumber" name="ProductNumber" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">資產描述*</span></font>
+            <div class="col-md-10">
+                <input type="text" id="ProductDescription" name="ProductDescription" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">廠區</span></font>
+            <div class="col-md-10">
+                <select class="form-control" name="Factory" id="Factory">
+                    @foreach (DataRow row in Model.Rows)
+                    {
+                        <option value="@row["FabName"]">@row["FabName"]</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">Phase*</span></font>
+            <div class="col-md-10">
+                <input type="text" id="Phase" name="Phase" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">棟別*</span></font>
+            <div class="col-md-10">
+                <input type="text" id="Buliding" name="Buliding" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">樓層*</span></font>
+            <div class="col-md-10">
+                <input type="text" id="Floor" name="Floor" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">課別*</span></font>
+            <div class="col-md-10">
+                <input type="text" id="ClassNO" name="ClassNO" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">設備分類*</span></font>
+            <div class="col-md-10">
+                <input type="text" id="DeviceClass" name="DeviceClass" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">廠牌</span></font>
+            <div class="col-md-10">
+                <input type="text" id="Brand" name="Brand" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">型號</span></font>
+            <div class="col-md-10">
+                <input type="text" id="Type" name="Type" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">資產分類</span></font>
+            <div class="col-md-10">
+                <input type="text" id="ProductClassful" name="ProductClassful" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">新增人</span></font>
+            <div class="col-md-10">
+                <input type="text" id="RackPeople" name="RackPeople" class="form-control" value="@Session["Remarks"]" readonly />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">備註</span></font>
+            <div class="col-md-10">
+                <input type="text" id="Remarks" name="Remarks" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">新增時間</span></font>
+            <div class="col-md-10">
+                <input type="date" id="AddDatetime" name="AddDatetime" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">機器狀態</span></font>
+            <div class="col-md-10">
+                <input type="text" id="Machinestate" name="Machinestate" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">下線日期</span></font>
+            <div class="col-md-10">
+                <input type="date" id="DownDate" name="DownDate" class="form-control" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <br />
+                <input type="submit" value="新增" class="btn btn-primary" />
+                <a href="/FAM/SMSReader" class="btn btn-info">返回SMSCCTV新增資訊</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+

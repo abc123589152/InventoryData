@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "DeviceSwitchUpload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>新增CCTV上傳</h2>
+<form method="post" action="@Url.Action("CCTVUpload")" enctype="multipart/form-data" name="send">
+    @Html.Raw(ViewBag.Error)
+    <span>Excel File </span>
+    <input type="file" name="file" />
+    <br />
+    <input type="submit" value="Import" />
+</form>
+
+
+

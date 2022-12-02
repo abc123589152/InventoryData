@@ -1,0 +1,8 @@
+﻿
+@{
+    ViewBag.Title = "DOORNoAuthority";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>無編輯權限,2秒後自動跳轉.....</h2>
+<meta http-equiv="refresh"content="2;url=@Url.Action("Door")"/>
+

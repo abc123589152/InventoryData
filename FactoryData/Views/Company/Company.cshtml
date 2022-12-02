@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Company";
+}
+<h2>Company</h2>
+@using System.Data;
+<title>@Model using system.Data.DataTable;</title>
+<div>
+    @Html.ActionLink("新增", "InsertCompany")
+    @using (Html.BeginForm())
+    {
+        <p>
+            搜尋卡號: @Html.TextBox("SearchCardNumber")
+            <input type="submit" value="搜尋">
+        </p>
+    }
+</div>
+@*<div calss="row" >
+    @foreach (DataRow row in Model.Rows) 
+    {
+        <p>@Html.ActionLink(row["ID"].ToString(),"Company",new {id = row["ID"]})</p>
+    }
+</div>*@
+<div>
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>公司名稱</td>
+            <td>員工名稱</td>
+            <td>卡號</td>
+            <td>新增時間</td>
+            <td>修改時間</td>
+        </tr>
+        @foreach (DataRow row in Model.Rows)
+        {
+            <tr>
+                <td>@row["ID"]</td>
+                <td>@row["CompanyName"]</td>
+                <td>@row["empolyeesName"]</td>
+                <td>@row["CardNumber"]</td>               
+                <td>@Convert.ToDateTime(row["AddDatetime"]).ToString("yyyy/MM/dd")</td>
+                <td>@row["EditDatetime"]</td>
+                <td>
+                    @Html.ActionLink("編輯", "CompanyEdit", new { id = row["ID"] },
+                                              new { @class = "btn btn-primary" })
+                    @Html.ActionLink("刪除", "CompanyDelete", new { id = row["ID"] },
+                                                 new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+
+

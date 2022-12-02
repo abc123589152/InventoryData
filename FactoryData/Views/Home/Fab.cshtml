@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "ReportDetial";
+}
+@using PagedList
+@using PagedList.Mvc
+@*@Model IPagedList<FactoryData.Models.Report>*@
+<title>@Model IEnumerable<FactoryData.Models.Fab></title>
+<h2>廠區</h2>
+@using System.Data
+@*<title>@Model using system.Data.DataTable</title>*@
+<div>
+    <a href="/Home/InsertFab" class="btn btn-default"style="background-color:orange">新增</a>
+    <form action="/home/Fab/" method="post" id="form1">
+        搜尋標題: @Html.TextBox("searchFab")
+        <input type="submit" value="搜尋">
+    </form>
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>廠區</td>
+            <td>EDIT</td>
+            @if (Session["UserName"].ToString() == "F2791560")
+            {
+                <td>DEL</td>
+            }
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.FabName</td>
+                <td>
+                    @Html.ActionLink("編輯", "EditFab", new { id = item.ID },
+                                                 new { @class = "btn btn-primary" })
+                </td>
+                @if (Session["UserName"].ToString() == "F2791560")
+                {
+                    <td>
+                        <a href="/home/FabDelete/@item.ID" class="btn btn-danger" onclick="return confirm('確定要刪除?')">刪除</a>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+
+

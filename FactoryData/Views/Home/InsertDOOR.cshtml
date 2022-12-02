@@ -1,0 +1,84 @@
+﻿<br />
+<h2>新增門禁資訊</h2>
+@using System.Data;
+<title>@Model using System.Data.DataTable</title>
+    <form method="post" action="@Url.Action("InsertDOOR")">
+        <div class="form-horizontal">
+            <hr />
+            <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">廠區</span></font>
+            <div class="col-md-10">
+                    <select class="form-control" name="Fab" id="Fab">
+                        @foreach (DataRow row in Model.Rows)
+                        {
+                            <option value="@row["FabName"]">@row["FabName"]</option>
+                        }
+                    </select>
+                    </div>
+                </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">門編號</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="DoorNumber" name="DoorNumber" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">門描述</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="DoorName" name="DoorName" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">ISTAR名稱</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="DoorIstarControlName" name="DoorIstarControlName" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">讀卡機連接型態</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="DoorConnectType" name="DoorConnectType" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">門讀卡機型態</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="DoorReaderType" name="DoorReaderType" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">ACM號碼</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="DoorAcmNumber" name="DoorAcmNumber" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">讀卡機Port位</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="DoorReaderPort" name="DoorReaderPort" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">新增廠商</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="AddVendor" name="AddVendor" class="form-control" value="@Session["Remarks"]" readonly />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">新增時間</span></font>
+                <div class="col-md-10">
+                    <input type="date" id="AddDatetime" name="AddDatetime" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">備註</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="Remarks" name="Remarks" class="form-control" />
+                    <br />
+                    <input type="submit" value="新增" class="btn btn-primary" />
+                    <a href="/Home/Door" class="btn btn-info">返回門禁新增資訊</a>
+                </div>
+            </div>
+        </div>
+    </form>
+

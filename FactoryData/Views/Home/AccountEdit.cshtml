@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "AccountEdit";
+}
+@using System.Data
+@using FactoryData.Controllers
+<title>@Model using System.Data.DataTable</title>
+@{
+    HomeController ho = new HomeController();
+    string Selectstr = "Select *from Permition";
+    DataTable dt = ho.da(Selectstr);
+}
+<h2>修改</h2>
+<form method="post" action="@Url.Action("AccountEdit")">
+    <div class="form-horizontal">
+        <hr />
+        @foreach (DataRow row in Model.Rows)
+        {
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">帳號</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="UserName" name="UserName" class="form-control" value="@row["UserName"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">權限</span></font>
+                <div class="col-lg-10">
+                    <select name="Permit" id="Permit" class="form-control" required>
+                        <option value="@row["Permit"]">@row["Permit"]</option>
+                        @foreach (DataRow row1 in dt.Rows)
+                        {
+                            <option value="@row1["GroupName"]">@row1["GroupName"]</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">備註</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="Remarks" name="Remarks" class="form-control" value="@row["Remarks"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">新增時間</span></font>
+                <div class="col-md-10">
+                    <input type="date" id="AddDatetime" name="AddDatetime" class="form-control" value="@Convert.ToDateTime(row["AddDatetime"]).ToString("yyyy-MM-dd")" required />
+                <br />
+                <input type="submit" value="修改" class="btn btn-primary" />
+                <a href="/Home/AccountDetail" class="btn btn-info">返回帳號新增</a>
+            </div>
+            </div>                              
+        }
+    </div>
+</form>
+
+

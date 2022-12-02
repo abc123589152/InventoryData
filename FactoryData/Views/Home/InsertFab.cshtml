@@ -1,0 +1,23 @@
+﻿<h2>新增廠區</h2>
+<form method="post" action="@Url.Action("InsertFab")">
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+        <font size="5"><span class="control-label col-md-2">ID</span></font>
+        <div class="col-md-10">
+            <input type="text" id="ID" name="ID" class="form-control" value="自動給號" readonly />
+        </div>
+            </div>
+        <div class="form-group">
+            <font size="5"><span class="control-label col-md-2">廠區</span></font>
+            <div class="col-md-10">
+                <input type="text" id="FabName" name="FabName" class="form-control" required />
+                <br />
+                <input type="submit" value="新增" class="btn btn-primary" />
+                <a href="/Home/Fab" class="btn btn-info">返回Fab</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+

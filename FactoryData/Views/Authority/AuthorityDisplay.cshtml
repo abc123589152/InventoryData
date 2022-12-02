@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "AuthorityDisplay";
+}
+<h2>權限</h2>
+@using System.Data
+@*<title>@Model using system.Data.DataTable</title>*@
+<title>@Model IEnumerable<FactoryData.Models.Authority></title>
+<div>
+    @Html.ActionLink("新增", "AuthorityGroup")
+    @using (Html.BeginForm())
+    {
+        <p>
+            搜尋標題: @Html.TextBox("SearchAuthority")
+            <input type="submit" value="搜尋">
+        </p>
+    }
+
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>權限群組</td>
+            <td>備註</td>           
+            <td>DETIAL</td>
+            <td>EDIT</td>
+            <td>DEL</td>
+        </tr>       
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.GroupName</td>
+                <td>@item.Remarks</td>
+                <td>
+                <td>
+                    @Html.ActionLink("編輯", "ReportEdit", new { id = item.ID },
+                                                 new { @class = "btn btn-primary" })
+                </td>
+                <td>
+                    @Html.ActionLink("刪除", "ReportDelete", new { id = item.ID },
+                    new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@*<script type="text/javascript">
+    $(function () {
+        $("#pageSize").change(function () {
+            $("#form1").submit();
+        });
+    });
+    </script>*@
+
+
+

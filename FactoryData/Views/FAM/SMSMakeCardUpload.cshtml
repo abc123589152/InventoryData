@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "SMSMakeCardUpload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>SMSMakeCardUpload</h2>
+<form method="post" action="@Url.Action("SMSMakeCardUpload")" enctype="multipart/form-data" name="send">
+    @Html.Raw(ViewBag.Error)
+    <span>Excel File </span>
+    <input type="file" name="file" />
+    <br />
+    <input type="submit" value="Import" />
+</form>
+
+
+
+
+
+
+
+
+

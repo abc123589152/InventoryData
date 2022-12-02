@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "SMSBarriergateUpload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>SMSBarriergateUpload</h2>
+<form method="post" action="@Url.Action("SMSBarriergateUpload")" enctype="multipart/form-data" name="send">
+    @Html.Raw(ViewBag.Error)
+    <span>Excel File </span>
+    <input type="file" name="file" />
+    <br />
+    <input type="submit" value="Import" />
+</form>
+
+
+
+
+
+
+
+
+
+
+

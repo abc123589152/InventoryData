@@ -1,0 +1,29 @@
+﻿.navbar .dd_menu {
+    position: absolute;
+    top: 47px;
+    right: -25px;
+    display: none;
+    background: #fff;
+    box-shadow: 0 0 3px rgba(0,0,0,0.25);
+    border-radius: 15px;
+    background-color:aqua;
+}
+
+    .navbar .dd_menu .dd_left {
+        background: #74ded8;     
+        padding: 15px 20px;
+    }
+
+.navmenuleft {
+    text-align: left;
+    padding: 10px 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.navmenucentor {
+    text-align: center;
+    padding: 10px 20px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}

@@ -1,0 +1,81 @@
+﻿@using System.Data;
+@using PagedList
+@using PagedList.Mvc
+<title>@Model IEnumerable<FactoryData.Models.InsertCCTV></title>
+<h2>CCTV新增資訊</h2>
+<div>
+    <a href="/Home/InsertCCTV" class="btn btn-default" style="background-color:orange">新增</a>
+    <a href="/Home/CCTVUpload" class="btn btn-default" style="background-color:turquoise">上傳</a>
+    <a href="/Home/CCTVExcelExport" class="btn btn-default" style="background-color:darksalmon">匯出資料</a>
+    <a href="/Home/ExampleCCTV" class="btn btn-default" style="background-color:aquamarine">範本</a>
+    <form action="/Home/CCTV" id="form1">
+        <p>
+            搜尋CCTV編號: @Html.TextBox("SearchCCTVNumber")
+            <input type="submit" value="搜尋">
+        </p>
+        <p>
+            選擇筆數: @Html.DropDownList("pageSize")
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("CCTV", new { page, pageSize = ViewBag.psize }))
+        </p>
+    </form>
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <td>ID</td>
+            <td>廠區</td>
+            <td>CCTV編號</td>
+            <td>CCTV描述</td>
+            <td>IP位址</td>
+            <td>MAC位址</td>
+            <td>品牌</td>
+            <td>型號</td>
+            <td>類型</td>
+            <td>Switch IP</td>
+            <td>Switch Port位</td>
+            <td>新增廠商</td>
+            <td>新增時間</td>
+            <td>修改時間</td>
+            <td align="center">備註</td>
+            <td>EDIT</td>
+            @if (Session["UserName"].ToString() == "F2791560")
+            {
+                <td>DEL</td>
+            }
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>@item.ID</td>
+        <td>@item.Fab</td>
+        <td>@item.CCTVNumber</td>
+        <td>@item.CCTVName</td>
+        <td>@item.CCTVIP</td>
+        <td>@item.CCTVMAC</td>
+        <td>@item.CCTVBrand</td>
+        <td>@item.CCTVModel</td>
+        <td>@item.CCTVType</td>
+        <td>@item.CCTVSwitchIp</td>
+        <td>@item.CCTVSwitchPort</td>
+        <td>@item.AddVendor</td>
+        <td>@Convert.ToDateTime(item.AddDatetime).ToString("yyyy/MM/dd")</td>
+        <td>@item.EditDatetime</td>
+        <td width="100">@item.Remarks</td>
+        <td>
+            @Html.ActionLink("編輯", "CCTVEdit", new { id = item.ID },
+                                      new { @class = "btn btn-primary" })
+        </td>
+        @if (Session["UserName"].ToString() == "F2791560")
+        {
+            <td>
+                <a href="/home/CCTVDelete/@item.ID" class="btn btn-danger" onclick="return confirm('確定要刪除?')">刪除</a>
+            </td>
+        }
+    </tr>
+        }
+    </table>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/pageSize.js"></script>
+
+

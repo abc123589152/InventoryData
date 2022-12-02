@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歡迎來到F15B廠區資料系統</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" type="text/css" href="~/Content/navbarmenu.css">
+</head>
+<body>
+        <div class="navbar navbar-inverse navbar-fixed-top navbar-">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("首頁", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="FactoryInsideInformation" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                廠內設備資訊
+                            </a>
+                            <ul class="dropdown-menu navmenuleft" aria-labelledby="FactoryInsideInformation" style="background-color:powderblue">
+                                <li>@Html.ActionLink("門禁新增資訊", "Door", "Home")</li>
+                                <li>@Html.ActionLink("CCTV新增資訊", "CCTV", "Home")</li>
+                                <li>@Html.ActionLink("F15B廠區設備裝置SWITCH阜位", "DeviceSwitchPortDisplay", "Home")</li>
+                                <li>@Html.ActionLink("新增廠區", "Fab", "Home")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="FactoryReportInformation" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                回報資訊
+                            </a>
+                            <ul class="dropdown-menu navmenuleft" aria-labelledby="FactoryReportInformation" style="background-color:powderblue">
+                                <li>@Html.ActionLink("記錄", "ReportDetial", "Home")</li>
+                                <li>@Html.ActionLink("業主回報", "OrnerReport", "Home")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="FactoryReportInformation" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                FAM資產表
+                            </a>
+                            <ul class="dropdown-menu navmenuleft" aria-labelledby="FactoryReportInformation" style="background-color:powderblue">
+                                <li>@Html.ActionLink("SMSCCTV", "SMSCCTV", "FAM")</li>
+                                <li>@Html.ActionLink("SMS-讀卡機", "SMSReader", "FAM")</li>
+                                <li>@Html.ActionLink("SMS-AlarmSystem", "SMSAlarmSystem", "FAM")</li>
+                                <li>@Html.ActionLink("SMS-柵欄機", "SMSBarriergate", "FAM")</li>
+                                <li>@Html.ActionLink("SMS-通關機", "SMSGate", "FAM")</li>
+                                <li>@Html.ActionLink("SMS-製證機", "SMSMakeCard", "FAM")</li>
+
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="FactoryAuthorityInformation" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                帳戶管理
+                            </a>
+                            <ul class="dropdown-menu navmenuleft" aria-labelledby="FactoryAuthorityInformation" style="background-color:powderblue">
+                                <li>@Html.ActionLink("新增帳號", "AccountDetail", "Home")</li>
+                                <li>@Html.ActionLink("權限設定", "permition", "Home")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                使用者
+                            </a>
+                            <ul class="dropdown-menu navmenucentor" aria-labelledby="navbarDropdownMenuLink" style="background-color:powderblue">
+                                @if (Session["Remarks"] != null)
+                                {
+                                    <li>
+                                        <a class="dropdown-item">
+                                            Welcome @Session["Remarks"].ToString()
+                                        </a>
+                                    </li>
+                                }
+                                <li></li>
+                                <li>
+                                    <form method="post" action="@Url.Action("Logout", "Login")" enctype="multipart/form-data">
+                                        <a href="/Home/EditPassword/" class="btn btn-primary">修改密碼</a>
+                                        <button type="submit" class="btn btn-danger">登出</button>
+                                        @Html.AntiForgeryToken()
+                                    </form>
+                                </li>
+                            </ul>
+                    </ul>
+                    @*<li>@Html.ActionLink("權限設定", "AuthorityGroup", "AuthorityDisplay")</li>*@
+                </div>               
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <footer>
+                <p align="center">&copy; @DateTime.Now.Year - 歡迎使用F15B廠區資料系統</p>
+            </footer>
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+
+</html>

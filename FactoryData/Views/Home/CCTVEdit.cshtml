@@ -1,0 +1,110 @@
+﻿@using System.Data
+@using FactoryData.Controllers
+<title>@Model using System.Data.DataTable</title>
+@{
+    HomeController ho = new HomeController();
+    string Selectstr = "Select *from Fab";
+    DataTable dt = ho.da(Selectstr);
+}
+<br />
+<h2>修改</h2>
+@foreach (DataRow row in Model.Rows)
+{
+    <form method="post" action="@Url.Action("CCTVEdit")">
+        <div class="form-horizontal">
+            <hr />
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">廠區</span></font>
+                <div class="col-md-10">
+                    <select class="form-control" name="Fab" required>
+                        <option value="@row["Fab"]">@row["Fab"]</option>
+                        @foreach (DataRow row1 in dt.Rows)
+                        {
+                            <option value="@row1["FabName"]">@row1["FabName"]</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">CCTV編號</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="CCTVNumber" name="CCTVNumber" class="form-control" value="@row["CCTVNumber"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">CCTV描述</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="CCTVName" name="CCTVName" class="form-control" value="@row["CCTVName"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">IP位址</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="CCTVIP" name="CCTVIP" class="form-control" value="@row["CCTVIP"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">MAC位址</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="CCTVMAC" name="CCTVMAC" class="form-control" value="@row["CCTVMAC"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">品牌</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="CCTVBrand" name="CCTVBrand" class="form-control" value="@row["CCTVBrand"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">型號</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="CCTVModel" name="CCTVModel" class="form-control" value="@row["CCTVModel"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">類型</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="CCTVType" name="CCTVType" class="form-control" value="@row["CCTVType"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">Switch IP</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="CCTVSwitchIp" name="CCTVSwitchIp" class="form-control" value="@row["CCTVSwitchIp"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">Switch Port位</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="CCTVSwitchPort" name="CCTVSwitchPort" class="form-control" value="@row["CCTVSwitchPort"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">新增廠商</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="AddVendor" name="AddVendor" class="form-control" value="@row["AddVendor"]" readonly />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">新增時間</span></font>
+                <div class="col-md-10">
+                    <input type="date" id="AddDatetime" name="AddDatetime" class="form-control" value="@Convert.ToDateTime(row["AddDatetime"]).ToString("yyyy-MM-dd")" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">備註</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="Remarks" name="Remarks" class="form-control" value="@row["Remarks"]" />
+                    <br />
+                    @if (Session["Remarks"].ToString() == @row["AddVendor"].ToString() || Session["UserName"].ToString() == "F2791560")
+                    {
+                        <input type="submit" value="修改" class="btn btn-primary" />
+                    }
+                    <a href="/Home/CCTV" class="btn btn-info">返回CCTV新增資訊</a>
+                </div>
+            </div>
+        </div>       
+    </form>
+}
+
+

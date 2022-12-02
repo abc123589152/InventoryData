@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>檔案上傳</title>
+</head>
+<body>
+    <form method="post" action="@Url.Action("About")" enctype="multipart/form-data">
+        <div>
+            <input type="file" name="photo" id="photo" />
+            <input type="submit" value="上傳" />
+        </div>
+    </form>
+</body>
+</html>

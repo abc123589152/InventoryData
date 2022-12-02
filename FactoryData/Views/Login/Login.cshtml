@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @*<link rel="stylesheet" href="~/Content/bootstrap.min.css.map">
+        <script type="text/javascript" src="~/Content/jquery-3.4.1.js"></script>
+        <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")       
+    </head>
+<body style="background-image: url(../Photos/technology-2082642.jpg)">
+    <div align="center">
+        <h1>歡迎登入F15B廠區資料中心</h1>
+        <img src="~/Photos/tsmclogo.png" width="130" height="100"/>
+    </div>
+    <form method="post" action="@Url.Action("Login")" enctype="multipart/form-data" class="form-signin">
+        <div align="center" class="">
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            <input type="text" name="UserName" id="UserName" class="form-control" placeholder="UserName">
+            <input type="password" name="UserPassWord" id="UserPassWord" class="form-control" placeholder="Password">
+            <input align="center" type="submit" value="登入" class="btn btn-lg btn-primary btn-block" onclick="loginerror()">
+            
+            <p>@TempData["Error"]</p>
+            @Html.AntiForgeryToken()
+        </div>
+    </form>
+</body>
+</html>
+

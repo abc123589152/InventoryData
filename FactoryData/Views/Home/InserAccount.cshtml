@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "InserAccount";
+}
+<br />
+<h2>新增帳號</h2>
+<title>@Model using System.Data.DataTable</title>
+@using System.Data
+<form method="post" action="@Url.Action("InserAccount")" enctype="multipart/form-data">
+    
+        <div class="form-horizontal">
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">帳號</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="UserName" name="UserName" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">密碼</span></font>
+                <div class="col-lg-10">
+                    <input type="password" name="UserPassWord" id="UserPassWord" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">權限</span></font>
+                <div class="col-lg-10">
+                    <select name="Permit" id="Permit" class="form-control" required>
+                        @foreach (DataRow row in Model.Rows)
+                        {
+                            <option value="@row["GroupName"]">@row["GroupName"]</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">備註</span></font>
+                <div class="col-lg-10">
+                    <input type="text" name="Remarks" id="Remarks" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">時間</span></font>
+                <div class="col-lg-10">
+                    <input type="date" name="AddDatetime" id="AddDatetime" class="form-control" required />
+                </div>
+                <br />
+                <input type="submit" value="新增" class="btn btn-primary" />
+                <a href="/Home/AccountDetail" class="btn btn-info">返回新增帳號</a>
+            </div>
+        </div>
+    </form>
+
+
+
+

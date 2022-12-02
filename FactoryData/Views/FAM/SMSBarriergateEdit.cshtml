@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "SMSBarriergateEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>SMSBarriergateEdit</h2>
+@using System.Data
+@using FactoryData.Controllers
+<title>@Model using System.Data.DataTable</title>
+@{
+    HomeController ho = new HomeController();
+    string Selectstr = "Select *from Fab";
+    DataTable dt = ho.da(Selectstr);
+}
+<br />
+<h2>修改</h2>
+@foreach (DataRow row in Model.Rows)
+{
+    <form method="post" action="@Url.Action("SMSBarriergateEdit")">
+        <div class="form-horizontal">
+            <hr />
+
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">異動類別*</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="RemoveClass" name="RemoveClass" class="form-control" value="@row["RemoveClass"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">系統*</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="System" name="System" class="form-control" value="@row["System"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">子系統*</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="SonSystem" name="SonSystem" class="form-control" value="@row["SonSystem"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">資產編號*</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="ProductNumber" name="ProductNumber" class="form-control" value="@row["ProductNumber"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">資產描述*</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="ProductDescription" name="ProductDescription" class="form-control" value="@row["ProductDescription"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">廠區*</span></font>
+                <div class="col-md-10">
+                    <select class="form-control" name="Factory" required>
+                        <option value="@row["Factory"]">@row["Factory"]</option>
+                        @foreach (DataRow row1 in dt.Rows)
+                        {
+                            <option value="@row1["FabName"]">@row1["FabName"]</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">Phase*</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="Phase" name="Phase" class="form-control" value="@row["Phase"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">棟別*</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="Buliding" name="Buliding" class="form-control" value="@row["Buliding"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">樓層*</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="Floor" name="Floor" class="form-control" value="@row["Floor"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">課別*</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="ClassNO" name="ClassNO" class="form-control" value="@row["ClassNO"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">設備分類*</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="DeviceClass" name="DeviceClass" class="form-control" value="@row["DeviceClass"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">廠牌</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="Brand" name="Brand" class="form-control" value="@row["Brand"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">型號</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="Type" name="Type" class="form-control" value="@row["Type"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">資產分類</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="ProductClassful" name="ProductClassful" class="form-control" value="@row["ProductClassful"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">新增人</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="RackPeople" name="RackPeople" class="form-control" value="@row["RackPeople"]" readonly />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">備註</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="Remarks" name="Remarks" class="form-control" value="@row["Remarks"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">新增時間</span></font>
+                <div class="col-md-10">
+                    <input type="date" id="AddDatetime" name="AddDatetime" class="form-control" value="@Convert.ToDateTime(row["AddDatetime"]).ToString("yyyy-MM-dd")" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">機器狀態</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="Machinestate" name="Machinestate" class="form-control" value="@row["Machinestate"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">下線日期</span></font>
+                <div class="col-md-10">
+                    <input type="date" id="DownDate" name="DownDate" class="form-control" value="@row["DownDate"]" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <br />
+                    @if (Session["Remarks"].ToString() == @row["RackPeople"].ToString() || Session["UserName"].ToString() == "F2791560")
+                    {
+                        <input type="submit" value="修改" class="btn btn-primary" />
+                    }
+                <a href="/FAM/SMSBarriergate" class="btn btn-info">返回SMS-柵欄機</a>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+
+
+
+
+
+

@@ -1,0 +1,90 @@
+﻿@using System.Data
+@using FactoryData.Controllers
+<title>@Model using System.Data.DataTable</title>
+<br />
+<h2>新增</h2>
+@{ 
+    HomeController ho = new HomeController();
+    string Selectstr = "Select *from Fab";
+    DataTable dt = ho.da(Selectstr);
+}
+<form method="post" action="@Url.Action("DeviceSwitchPortEdit")">
+    <div class="form-horizontal">
+        <hr />
+        @foreach (DataRow row in Model.Rows)
+        {
+
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">廠區</span></font>
+                <div class="col-md-10">
+                    <select class="form-control" name="Fab" required>
+                        <option value="@row["Fab"]">@row["Fab"]</option>
+                        @foreach (DataRow row1 in dt.Rows)
+                        {
+                            <option value="@row1["FabName"]">@row1["FabName"]</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">Switch名稱</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="SwitchName" name="SwitchName" class="form-control" value="@row["SwitchName"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">Switch IP</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="SwitchIP" name="SwitchIP" class="form-control" value="@row["SwitchIP"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">Switch MAC</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="SwitchMAC" name="SwitchMAC" class="form-control" value="@row["SwitchMAC"]" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">Switch Port</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="SwitchPort" name="SwitchPort" class="form-control" value="@row["SwitchPort"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">裝置名稱</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="DeviceName" name="DeviceName" class="form-control" value="@row["DeviceName"]" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">類型</span></font>
+                <div class="col-md-10">
+                    <input type="text" id="DeviceType" name="DeviceType" class="form-control" value="@row["DeviceType"]" required />
+                </div>
+            </div>
+            @*<div class="form-group">
+                <font size="5"><span class="control-label col-md-2">新增時間</span></font>
+                <div class="col-md-10">
+                    <input type="date" id="AddDatetime" name="AddDatetime" class="form-control" value="@Convert.ToDateTime(row["AddDatetime"]).ToString("yyyy-MM-dd")" required />
+                </div>
+            </div>*@
+            <div class="form-group">
+                <font size="5"><span class="control-label col-md-2">新增時間</span></font>
+                <div class="col-md-10">
+                    <input type="date" id="AddDatetime" name="AddDatetime" class="form-control" value="@Convert.ToDateTime(row["AddDatetime"]).ToString("yyyy-MM-dd")" required />
+                </div>
+                </div>
+                <div class="form-group">
+                    <font size="5"><span class="control-label col-md-2">備註</span></font>
+                    <div class="col-md-10">
+                        <input type="text" id="Remarks" name="Remarks" class="form-control" value="@row["Remarks"]" />
+                        <br />
+                        <input type="submit" value="修改" class="btn btn-primary" />
+                        <a href="/Home/DeviceSwitchPortDisplay" class="btn btn-info">返回F15B廠區設備裝置SWITCH阜位</a>
+                    </div>
+                </div>
+            }
+    </div>
+</form>
